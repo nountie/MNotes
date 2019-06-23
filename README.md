@@ -1,4 +1,4 @@
 # MNotes
 Just simple sticky notes in Vanilla JS and LocalStorage
-## Demo[
+## Demo
 [Link](https://nountie.github.io/MNotes/build/)
