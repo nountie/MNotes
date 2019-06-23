@@ -68,8 +68,9 @@ function createNote(options) {
 
   function onDelete() {
     deleteNote(noteEl.id);
-    console.log(noteEl.id);
-    noteEl.style.display = "none";
+    noteEl.style.transition = "all 0.3s ease-out";
+    noteEl.style.transform += " scale(0)";
+    // noteEl.classList.add("deleted");
   }
   function onSave() {
     // console.log(getNoteObject(noteEl));
@@ -80,7 +81,6 @@ function createNote(options) {
     if (noteEl.height != noteEl.offsetHeight || noteEl.width != noteEl.offsetWidth) {
       resizeCounter++;
       if(resizeCounter == 10) {
-        console.log("SAVED");
         saveNote(getNoteObject(noteEl));
         resizeCounter = 0;
       }
@@ -158,7 +158,6 @@ if(testLocalStorage()) {
     saveNote();
   };
   function loadNotes() {
-    // console.dir(JSON.parse(localStorage.getItem("notes")));
     notesObj = JSON.parse(localStorage.getItem("notes"));
     notesObj = (!notesObj)? {} : notesObj;
     for(let note in notesObj) {
