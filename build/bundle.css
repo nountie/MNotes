@@ -1,0 +1,109 @@
+body {
+  color: #32b4c5;
+  background: #32b4c5;
+  overflow: hidden;
+  font-family: "Mali"; }
+
+.note {
+  background: #fff;
+  padding-top: 20px;
+  display: inline-block;
+  min-height: 100px;
+  min-width: 100px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  border-radius: 6px;
+  box-shadow: 2px 2px 5px -2px rgba(15, 59, 65, 0.55);
+  opacity: 1;
+  z-index: 9;
+  animation: comeIn 0.2s ease-in; }
+  .note:hover {
+    z-index: 999; }
+    .note:hover .note__bar {
+      background: #525ac9; }
+  .note__bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 21px;
+    width: 100%;
+    background: #474da7;
+    border-radius: 6px 6px 0 0; }
+    .note__bar:hover {
+      cursor: move; }
+    .note__bar-delete {
+      border: none;
+      color: #fff;
+      background: #d45d5d;
+      font-weight: 700;
+      border-radius: 4px;
+      padding: 3px 8px;
+      display: flex;
+      margin-left: auto; }
+  .note__textarea {
+    padding: 8px 12px;
+    box-sizing: border-box;
+    min-height: 100px;
+    min-width: 100px;
+    border: none;
+    background: transparent;
+    font-family: "Mali";
+    font-size: 17px;
+    font-weight: 500;
+    vertical-align: middle; }
+    .note__textarea:focus {
+      outline: none; }
+
+.add-note {
+  background: none;
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  border: none;
+  border-radius: 50%;
+  display: block;
+  width: 60px;
+  height: 60px;
+  line-height: 1;
+  background: #fff;
+  font-size: 28px;
+  font-weight: 700;
+  font-family: "Mali";
+  color: #272a5a;
+  box-shadow: 2px 2px 5px -2px rgba(15, 59, 65, 0.55);
+  transition: transform 0.3s ease; }
+  .add-note:focus {
+    outline: none; }
+  .add-note:hover {
+    transform: scale(1.1);
+    cursor: pointer; }
+
+/* width */
+textarea::-webkit-scrollbar {
+  width: 12px; }
+
+/* Track */
+textarea::-webkit-scrollbar-track {
+  background: #f1f1f100; }
+
+/* Handle */
+textarea::-webkit-scrollbar-thumb {
+  background: rgba(50, 56, 139, 0.418); }
+
+/* Handle on hover */
+textarea::-webkit-scrollbar-thumb:hover {
+  background: rgba(196, 196, 196, 0.705); }
+
+@keyframes comeIn {
+  0% {
+    opacity: 0;
+    z-index: -1;
+    transform: scale(0.6); }
+  100% {
+    opacity: 1;
+    z-index: 9;
+    transform: scale(1); } }
+
+
+/*# sourceMappingURL=bundle.css.map*/
