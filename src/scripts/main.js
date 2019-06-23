@@ -44,7 +44,7 @@ function getNoteObject(el) {
     id: el.id,
     transformCSSorigin: el.style.transform,
     width: el.offsetWidth,
-    height: el.offsetHeight
+    height: el.offsetHeight-21
   };
 }
 
@@ -77,7 +77,7 @@ function createNote(options) {
     saveNote(getNoteObject(noteEl));
   }
   let resizeCounter = 0;
-  function onNoteResize() {
+   let onNoteResize = function() {
     if (noteEl.height != noteEl.offsetHeight || noteEl.width != noteEl.offsetWidth) {
       resizeCounter++;
       if(resizeCounter == 10) {
@@ -85,7 +85,7 @@ function createNote(options) {
         resizeCounter = 0;
       }
     }
-  }
+  };
 
 
   noteEl.id = noteConfig.id;
@@ -114,18 +114,27 @@ function createNote(options) {
   textareaEl.style.height = noteConfig.height + "px";
   textareaEl.style.width = noteConfig.width + "px";
   noteEl.style.transition = `transform ${(calculatedTime/1000)+0.2}s ease-in`;
-  setTimeout(() => {
-    noteEl.style.transform = noteConfig.transformOrigin;
-    setTimeout(() => {
-      noteEl.style.transition = "none"; 
-      new ResizeObserver(onNoteResize).observe(textareaEl);
-    }, (calculatedTime+300));
-  }, 300);
+  
 
+  let promise = new Promise(function (resolve, reject) {
+    setTimeout(() => {
+      noteEl.style.transform = noteConfig.transformOrigin;
+      setTimeout(() => {
+        noteEl.style.transition = "none";
+        new ResizeObserver(onNoteResize).observe(textareaEl);
+        resolve(noteEl);
+      }, (calculatedTime + 300));
+    }, 300);
+  });
+  return promise;
 }
 
+
 function onAddBtnClick() {
-  createNote();
+  createNote().then(function (note) {
+    console.log(note);
+    saveNote(getNoteObject(note));
+  });
 }
 
 function init() {
